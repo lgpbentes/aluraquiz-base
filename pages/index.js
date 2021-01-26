@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import Head from 'next/head'
+
 import db from '../db.json';
 import Widget from '../src/components/Widget'
 import QuizLogo from '../src/components/QuizLogo'
@@ -26,28 +28,37 @@ export const QuizContainer = styled.div`
 
 export default function Home() {
   return (
-    <QuizBackground backgroundImage={db.bg}>
-      <QuizContainer>
-        <QuizLogo />
-        <Widget>
-          <Widget.Header>
-            <h1>{db.title}</h1>
-          </Widget.Header>
-          <Widget.Content>
-            <p>{db.description}</p>
-          </Widget.Content>
-        </Widget>
+    <>
+      <Head>
+        <title>The Office Quiz</title>
+        <meta property="og:title" content="The Office Quiz" key="title" />
+      </Head>
+      <Head>
+        <meta property="og:image" content={db.bg} />
+      </Head>
+      <QuizBackground backgroundImage={db.bg}>
+        <QuizContainer>
+          <QuizLogo />
+          <Widget>
+            <Widget.Header>
+              <h1>{db.title}</h1>
+            </Widget.Header>
+            <Widget.Content>
+              <p>{db.description}</p>
+            </Widget.Content>
+          </Widget>
 
-        <Widget>
-          <Widget.Content>
-            <h1>Quizes da Galera</h1>
+          <Widget>
+            <Widget.Content>
+              <h1>Quizes da Galera</h1>
 
-            <p>lorem ipsum dolor sit amet...</p>
-          </Widget.Content>
-        </Widget>
-        <Footer />
-      </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/omariosouto" />
-    </QuizBackground>
+              <p>lorem ipsum dolor sit amet...</p>
+            </Widget.Content>
+          </Widget>
+          <Footer />
+        </QuizContainer>
+        <GitHubCorner projectUrl="https://github.com/omariosouto" />
+      </QuizBackground>
+    </>
   );
 }
